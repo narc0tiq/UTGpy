@@ -75,3 +75,24 @@ def test_non_coordinate_inequality():
     final = object()
     with pytest.raises(AttributeError):
         initial != final
+
+north_pairs = ((0,0), (0,1), (1,0))
+south_pairs = ((1,2), (2,1), (2,2))
+east_pairs = ((1,0), (2,1), (2,0))
+west_pairs = ((0,2), (0,1), (1,2))
+
+def cardinal_check(pairs, function):
+    for x in xrange(3):
+        for y in xrange(3):
+            if (x, y) in pairs:
+                assert function(world.Coordinates(x, y))
+            else:
+                assert not function(world.Coordinates(x, y))
+
+
+def test_cardinal_directions():
+    location = world.Coordinates(1, 1)
+    cardinal_check(north_pairs, lambda c: c.is_north_of(location))
+    cardinal_check(south_pairs, lambda c: c.is_south_of(location))
+    cardinal_check(east_pairs, lambda c: c.is_east_of(location))
+    cardinal_check(west_pairs, lambda c: c.is_west_of(location))

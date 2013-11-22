@@ -17,6 +17,18 @@ class Coordinates(object):
         dy = other.y - self.y
         return sqrt(dx * dx + dy * dy)
 
+    def is_north_of(self, other):
+        return self.x + self.y < other.x + other.y
+
+    def is_south_of(self, other):
+        return self.x + self.y > other.x + other.y
+
+    def is_west_of(self, other):
+        return self.x - self.y < other.x - other.y
+
+    def is_east_of(self, other):
+        return self.x - self.y > other.x - other.y
+
     def __eq__(self, other):
         return self.x == other.x and self.y == other.y
 
