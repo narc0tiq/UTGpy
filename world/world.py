@@ -1,8 +1,10 @@
 from .coordinates import Coordinates
 
 class World(object):
-    minx = miny = 0
-    maxx = maxy = 63
+    def __init__(self, width=64, height=64):
+        self.minx = self.miny = 0
+        self.maxx = width - 1
+        self.maxy = height - 1
 
     @property
     def northmost(self):
