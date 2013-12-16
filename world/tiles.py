@@ -4,7 +4,7 @@ Tile = namedtuple('Tile', ['name', 'degrades_to'])
 
 class Loader(object):
     """
-    Loads a Tile from some kind of serializable representation.
+    Loads a :py:class:`Tile` from some kind of serializable representation.
 
     Supported representations:
         - dictionary containing one tile (e.g. from json.loads('{"name":"blah"...}'))
@@ -13,9 +13,9 @@ class Loader(object):
 
     def tile_from_dict(self, d):
         """
-        Load a Tile from a dictionary.
+        Load a :py:class:`Tile` from a dictionary.
 
-        The dictionary must have a 'name' key and may also have a 'degrades_to' key.
+        The dictionary **must** have a 'name' key and *may* also have a 'degrades_to' key.
         No validation is done to ensure the `degrades_to` tile actually exists.
         """
 
@@ -27,8 +27,8 @@ class Loader(object):
 
     def tiles_from_list(self, l):
         """
-        Load a list of Tiles from a list of dictionaries.
+        Load a list of :py:class:`.Tile` s from a list of dictionaries.
 
-        See :py:meth:`tile_from_dict` for the form of the dictionaries.
+        See :py:meth:`.tile_from_dict` for the form of the dictionaries.
         """
         return [self.tile_from_dict(d) for d in l]
